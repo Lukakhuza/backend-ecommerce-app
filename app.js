@@ -30,17 +30,17 @@ const productRoutes = require("./routes/product");
 const userRoutes = require("./routes/user");
 const authRoutes = require("./routes/auth");
 
-app.use("/", (req, res, next) => {
-  // const result = {
-  //   firstName: "Luka",
-  //   lastName: "Khuza",
-  // };
-  // res.setHeader("Content-Type", "application/json");
-  // res.setHeader("Set-Cookie", "loggedIn=true");
-  req.session.isLoggedIn = true;
-  // res.send(JSON.stringify(result));
-  next();
-});
+// app.use("/", (req, res, next) => {
+// const result = {
+//   firstName: "Luka",
+//   lastName: "Khuza",
+// };
+// res.setHeader("Content-Type", "application/json");
+// res.setHeader("Set-Cookie", "loggedIn=true");
+// req.session.isLoggedIn = true;
+// res.send(JSON.stringify(result));
+// next();
+// });
 
 app.use("/places", async (req, res, next) => {
   // const fileContent = await fs.readFile("dataplaces.json");
