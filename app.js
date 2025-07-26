@@ -17,14 +17,14 @@ const store = new MongoDBStore({
 });
 
 app.use(bodyParser.json({ strict: false }));
-app.use(
-  session({
-    secret: process.env.SESSION_SECRET,
-    resave: false,
-    saveUninitialized: false,
-    store: store,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.SESSION_SECRET,
+//     resave: false,
+//     saveUninitialized: false,
+//     store: store,
+//   })
+// );
 
 const productRoutes = require("./routes/product");
 const userRoutes = require("./routes/user");
