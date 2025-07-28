@@ -39,10 +39,13 @@ exports.loginUser = (req, res, next) => {
 
   const email = req.body.email;
   const password = req.body.password;
-  User.find()
-    .then((users) => {
-      console.log(users);
+  User.findOne({ email: "Luka1@test.com" })
+    .then((result) => {
+      console.log(result);
     })
+    // .then((users) => {
+    //   console.log(users);
+    // })
     .catch((err) => {
       console.log(err);
     });
