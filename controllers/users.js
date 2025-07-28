@@ -1,5 +1,6 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 exports.createUser = (req, res, next) => {
   const firstName = req.body.firstName;
@@ -37,6 +38,7 @@ exports.loginUser = (req, res, next) => {
   const email = req.body.email;
   const password = req.body.password;
   User.findOne({ email: email }).then((user) => {
+    console.log("Test 3", user);
     if (!user) {
       // If no user, redirect the user to the login page.
     }
@@ -46,6 +48,7 @@ exports.loginUser = (req, res, next) => {
         if (doMatch) {
           // log user in
           console.log("Logged in successfully");
+          // generate a token and return it to the user (use jwt)
         }
         // else, redirect the user back to the login page.
       })
