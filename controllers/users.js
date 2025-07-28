@@ -39,25 +39,32 @@ exports.loginUser = (req, res, next) => {
 
   const email = req.body.email;
   const password = req.body.password;
-  User.findOne({ email: email }).then((user) => {
-    console.log("Test 3", user);
-    if (!user) {
-      // If no user, redirect the user to the login page.
-    }
-    bcrypt
-      .compare(password, user.password)
-      .then((doMatch) => {
-        if (doMatch) {
-          // log user in
-          console.log("Logged in successfully");
-          // generate a token and return it to the user (use jwt)
-        }
-        // else, redirect the user back to the login page.
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
+  User.find()
+    .then((users) => {
+      console.log(users);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  // User.findOne({ email: email }).then((user) => {
+  //   console.log("Test 3", user);
+  //   if (!user) {
+  //     // If no user, redirect the user to the login page.
+  //   }
+  //   bcrypt
+  //     .compare(password, user.password)
+  //     .then((doMatch) => {
+  //       if (doMatch) {
+  //         // log user in
+  //         console.log("Logged in successfully");
+  //         // generate a token and return it to the user (use jwt)
+  //       }
+  //       // else, redirect the user back to the login page.
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // });
 };
 
 exports.getUsers = (req, res, next) => {
