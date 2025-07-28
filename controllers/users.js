@@ -35,7 +35,7 @@ exports.createUser = (req, res, next) => {
 };
 
 exports.loginUser = (req, res, next) => {
-  console.log("Test 0", req);
+  console.log("Test 0", req.body);
 
   const email = req.body.email;
   const password = req.body.password;
