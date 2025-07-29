@@ -35,14 +35,11 @@ exports.createUser = (req, res, next) => {
 };
 
 exports.loginUser = (req, res, next) => {
-  console.log("Test 0", req.body);
-
-  const email = req.body.email;
-  console.log("Test 5", typeof email);
+  const email = req.body.email.toLowerCase();
   const password = req.body.password;
   User.findOne({ email: email })
-    .then((result) => {
-      console.log(result);
+    .then((user) => {
+      console.log(user);
     })
     // .then((users) => {
     //   console.log(users);
