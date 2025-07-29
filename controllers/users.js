@@ -40,7 +40,7 @@ exports.loginUser = (req, res, next) => {
   const email = req.body.email;
   console.log("Test 5", typeof email);
   const password = req.body.password;
-  User.findOne({ email: "LUKA1@TEST.COM" })
+  User.findOne({ email: email })
     .then((result) => {
       console.log(result);
     })
