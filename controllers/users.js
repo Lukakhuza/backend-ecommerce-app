@@ -49,8 +49,13 @@ exports.loginUser = (req, res, next) => {
         if (doMatch) {
           // log user in
           console.log("Logged in successfully");
-          // jwt.sign();
           // generate a token and return it to the user (use jwt)
+          const token = jwt.sign(
+            { email: user.email, userId: user._id.toString() },
+            "testsec",
+            { expiresIn: "1h" }
+          );
+          res.status(200).json({ token: token, userId: user._id.toString() });
         }
         // else, redirect the user back to the login page.
       })
