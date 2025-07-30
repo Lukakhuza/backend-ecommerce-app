@@ -71,6 +71,7 @@ exports.authenticate = (req, res, next) => {
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, "testsec");
+    console.log("Test 11.0 ", decodedToken);
   } catch (error) {
     error.statusCode = 500;
     throw error;
