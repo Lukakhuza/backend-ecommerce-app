@@ -10,6 +10,8 @@ router.put("/create-user", usersController.createUser);
 // Log In User
 router.post("/login", usersController.loginUser);
 
+router.post("/authenticate", usersController.authenticate);
+
 // Get Users
 router.get("/get-users", usersController.getUsers);
 

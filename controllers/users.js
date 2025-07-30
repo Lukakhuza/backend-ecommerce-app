@@ -65,6 +65,10 @@ exports.loginUser = (req, res, next) => {
   });
 };
 
+exports.authenticate = (req, res, next) => {
+  console.log(req.body);
+};
+
 exports.getUsers = (req, res, next) => {
   User.find()
     .then((users) => {
