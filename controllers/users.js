@@ -81,7 +81,7 @@ exports.authenticate = (req, res, next) => {
     error.statusCode = 401;
     throw error;
   }
-  return decodedToken;
+  res.status(200).json({ token: token, decodedToken: decodedToken });
 };
 
 exports.getUsers = (req, res, next) => {
