@@ -72,13 +72,13 @@ exports.authenticate = (req, res, next) => {
     decodedToken = jwt.verify(token, "testsec");
   } catch (error) {
     error.statusCode = 500;
-    res.status(500);
+    res.status(500).json({ message: "Status 500 Error." });
     throw error;
   }
   if (!decodedToken) {
     const error = new Error("Not Authenticated.");
     error.statusCode = 401;
-    res.status(401);
+    res.status(401).json({ message: "Token is invalid." });
     throw error;
   }
   res.status(200).json({ token: token, decodedToken: decodedToken });
