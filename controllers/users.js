@@ -67,6 +67,7 @@ exports.loginUser = (req, res, next) => {
 
 exports.authenticate = (req, res, next) => {
   const token = req.body.token;
+  console.log("Test 11", token);
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, "testsec");
