@@ -66,7 +66,20 @@ exports.loginUser = (req, res, next) => {
 };
 
 exports.authenticate = (req, res, next) => {
-  console.log(req.body);
+  const token = req.body.token;
+  let decodedToken;
+  try {
+    decodedToken = jwt.verify(token, "testsec");
+  } catch (error) {
+    error.statusCode = 500;
+    throw error;
+  }
+  if (!decodedToken) {
+    const error = new Error("Not Authenticated.");
+    error.statusCode = 401;
+    throw error;
+  }
+  return decodedToken;
 };
 
 exports.getUsers = (req, res, next) => {
