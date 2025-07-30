@@ -67,18 +67,18 @@ exports.loginUser = (req, res, next) => {
 
 exports.authenticate = (req, res, next) => {
   const token = req.body.token;
-  console.log("Test 11", token);
   let decodedToken;
   try {
     decodedToken = jwt.verify(token, "testsec");
-    console.log("Test 11.0 ", decodedToken);
   } catch (error) {
     error.statusCode = 500;
+    res.status(500);
     throw error;
   }
   if (!decodedToken) {
     const error = new Error("Not Authenticated.");
     error.statusCode = 401;
+    res.status(401);
     throw error;
   }
   res.status(200).json({ token: token, decodedToken: decodedToken });
