@@ -41,10 +41,12 @@ exports.loginUser = (req, res, next) => {
   User.findOne({ email: email }).then((user) => {
     if (!user) {
       // If no user, redirect the user to the login page.
+      console.log("Test 20");
       res
         .status(401)
         .json({ message: "There is no user with the provided email!" });
     } else {
+      console.log("Test 21");
       bcrypt
         .compare(password, user.password)
         .then((doMatch) => {
