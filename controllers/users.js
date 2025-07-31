@@ -41,7 +41,9 @@ exports.loginUser = (req, res, next) => {
   User.findOne({ email: email }).then((user) => {
     if (!user) {
       // If no user, redirect the user to the login page.
-      console.log("No user found!");
+      res
+        .status(401)
+        .json({ message: "There is no user with the provided email!" });
     }
     bcrypt
       .compare(password, user.password)
@@ -57,7 +59,7 @@ exports.loginUser = (req, res, next) => {
           );
           res.status(200).json({ token: token, userId: user._id.toString() });
         } else {
-          console.log("Password doesn't match what we have on file.");
+          res.status(401).json({ message: "Incorrect Password" });
         }
         // else, redirect the user back to the login page.
       })
