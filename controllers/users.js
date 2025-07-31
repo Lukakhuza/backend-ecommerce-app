@@ -64,7 +64,7 @@ exports.loginUser = (req, res, next) => {
           // else, redirect the user back to the login page.
         })
         .catch((err) => {
-          console.log(err);
+          console.log("Err 3", err);
         });
     }
   });
@@ -76,12 +76,14 @@ exports.authenticate = (req, res, next) => {
   try {
     decodedToken = jwt.verify(token, "testsec");
   } catch (error) {
-    error.statusCode = 505;
-    res.status(505).json({ message: "Status 505 Error." });
+    console.log("Err 1", error);
+    error.statusCode = 500;
+    res.status(500).json({ message: "Status 500 Error." });
     throw error;
   }
   if (!decodedToken) {
     const error = new Error("Not Authenticated.");
+    console.log("Err 2", error);
     error.statusCode = 401;
     res.status(401).json({ message: "Token is invalid." });
     throw error;
