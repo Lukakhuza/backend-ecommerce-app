@@ -39,9 +39,9 @@ exports.loginUser = (req, res, next) => {
   const password = req.body.password;
   console.log("Test 6", req.body);
   User.findOne({ email: email }).then((user) => {
-    console.log("Test 3", user);
     if (!user) {
       // If no user, redirect the user to the login page.
+      console.log("No user found!");
     }
     bcrypt
       .compare(password, user.password)
@@ -56,6 +56,8 @@ exports.loginUser = (req, res, next) => {
             { expiresIn: "1h" }
           );
           res.status(200).json({ token: token, userId: user._id.toString() });
+        } else {
+          console.log("Password doesn't match what we have on file.");
         }
         // else, redirect the user back to the login page.
       })
