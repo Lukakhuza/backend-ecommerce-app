@@ -64,6 +64,7 @@ exports.loginUser = (req, res, next) => {
       })
       .catch((err) => {
         if (err.statusCode === 401) {
+          console.log("Test 45");
           return res
             .status(401)
             .json({ message: "Authentication Failed.", errors: err.errors });
