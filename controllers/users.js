@@ -57,7 +57,7 @@ exports.loginUser = async (req, res, next) => {
     );
     res.status(200).json({ token: token, userId: user._id.toString() });
   } catch (err) {
-    console.log("Test 44", err);
+    console.log(err);
     if (err.statusCode === 401) {
       return res.status(401).json({
         message: "Authentication Failed.",
