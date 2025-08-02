@@ -39,7 +39,7 @@ exports.loginUser = (req, res, next) => {
   const password = req.body.password;
   User.findOne({ email: email }).then((user) => {
     if (!user) {
-      const error = new Error("There is no user with the provided email!");
+      const error = Error("There is no user with the provided email!");
       error.statusCode = 401;
       throw error;
     }
