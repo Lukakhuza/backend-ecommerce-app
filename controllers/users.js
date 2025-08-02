@@ -38,7 +38,7 @@ exports.loginUser = async (req, res, next) => {
   const email = req.body.email.toLowerCase();
   const password = req.body.password;
   try {
-    const user = await findOne({ email: email });
+    const user = await User.findOne({ email: email });
     if (!user) {
       const error = new Error("There is no user with the provided email!");
       error.statusCode = 401;
