@@ -39,34 +39,32 @@ exports.loginUser = (req, res, next) => {
   const password = req.body.password;
   User.findOne({ email: email }).then((user) => {
     if (!user) {
-      // If no user, redirect the user to the login page.
-      console.log("Test 20");
-      res
-        .status(401)
-        .json({ message: "There is no user with the provided email!" });
-    } else {
-      bcrypt
-        .compare(password, user.password)
-        .then((doMatch) => {
-          if (doMatch) {
-            // log user in
-            console.log("Logged in successfully");
-            // generate a token and return it to the user (use jwt)
-            const token = jwt.sign(
-              { email: user.email, userId: user._id.toString() },
-              "testsec",
-              { expiresIn: "1h" }
-            );
-            res.status(200).json({ token: token, userId: user._id.toString() });
-          } else {
-            res.status(401).json({ message: "Incorrect Password" });
-          }
-          // else, redirect the user back to the login page.
-        })
-        .catch((err) => {
-          console.log(err);
-        });
+      const error = new Error("There is no user with the provided email!");
+      error.status(401);
+      throw error;
     }
+    bcrypt
+      .compare(password, user.password)
+      .then((doMatch) => {
+        if (doMatch) {
+          // log user in
+          console.log("Logged in successfully");
+          // generate a token and return it to the user (use jwt)
+          const token = jwt.sign(
+            { email: user.email, userId: user._id.toString() },
+            "testsec",
+            { expiresIn: "1h" }
+          );
+          res.status(200).json({ token: token, userId: user._id.toString() });
+        } else {
+          const error = new Error("Incorrect Password!");
+          res.status(401);
+          throw error;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   });
 };
 
