@@ -40,7 +40,7 @@ exports.loginUser = (req, res, next) => {
   User.findOne({ email: email }).then((user) => {
     if (!user) {
       const error = new Error("There is no user with the provided email!");
-      error.status(401);
+      error.statusCode(401);
       throw error;
     }
     bcrypt
@@ -58,7 +58,7 @@ exports.loginUser = (req, res, next) => {
           res.status(200).json({ token: token, userId: user._id.toString() });
         } else {
           const error = new Error("Incorrect Password!");
-          res.status(401);
+          res.statusCode(401);
           throw error;
         }
       })
