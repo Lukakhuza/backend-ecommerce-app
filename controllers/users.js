@@ -63,7 +63,11 @@ exports.loginUser = (req, res, next) => {
         }
       })
       .catch((err) => {
-        console.log(err);
+        if (err.statusCode === 401) {
+          return res
+            .status(401)
+            .json({ message: "Authentication Failed.", errors: err.errors });
+        }
       });
   });
 };
