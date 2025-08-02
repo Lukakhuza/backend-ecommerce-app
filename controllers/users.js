@@ -59,7 +59,6 @@ exports.loginUser = async (req, res, next) => {
   } catch (err) {
     console.log("Test 44", err);
     if (err.statusCode === 401) {
-      console.log("Test 45");
       return res.status(401).json({
         message: "Authentication Failed.",
         errors: err.errors,
