@@ -34,48 +34,38 @@ exports.createUser = (req, res, next) => {
     });
 };
 
-exports.loginUser = (req, res, next) => {
+exports.loginUser = async (req, res, next) => {
   const email = req.body.email.toLowerCase();
   const password = req.body.password;
-  User.findOne({ email: email })
-    .then((user) => {
-      if (!user) {
-        const error = new Error("There is no user with the provided email!");
-        error.statusCode = 401;
-        throw error;
-      }
-      bcrypt
-        .compare(password, user.password)
-        .then((doMatch) => {
-          if (doMatch) {
-            // log user in
-            console.log("Logged in successfully");
-            // generate a token and return it to the user (use jwt)
-            const token = jwt.sign(
-              { email: user.email, userId: user._id.toString() },
-              "testsec",
-              { expiresIn: "1h" }
-            );
-            res.status(200).json({ token: token, userId: user._id.toString() });
-          } else {
-            const error = new Error("Incorrect Password!");
-            error.statusCode = 401;
-            throw error;
-          }
-        })
-        .catch((err) => {
-          console.log("Test 44", err);
-          if (err.statusCode === 401) {
-            console.log("Test 45");
-            return res
-              .status(401)
-              .json({ message: "Authentication Failed.", errors: err.errors });
-          }
-        });
-    })
-    .catch((err) => {
-      console.log("Error: ", err);
-    });
+  try {
+    const user = await findOne({ email: email });
+    if (!user) {
+      const error = new Error("There is no user with the provided email!");
+      error.statusCode = 401;
+      throw error;
+    }
+    const doMatch = await compare(password, user.password);
+    if (!doMatch) {
+      const error = new Error("Incorrect Password!");
+      error.statusCode = 401;
+      throw error;
+    }
+    const token = jwt.sign(
+      { email: user.email, userId: user._id.toString() },
+      "testsec",
+      { expiresIn: "1h" }
+    );
+    res.status(200).json({ token: token, userId: user._id.toString() });
+  } catch (err) {
+    console.log("Test 44", err);
+    if (err.statusCode === 401) {
+      console.log("Test 45");
+      return res.status(401).json({
+        message: "Authentication Failed.",
+        errors: err.errors,
+      });
+    }
+  }
 };
 
 exports.authenticate = (req, res, next) => {
