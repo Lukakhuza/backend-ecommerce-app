@@ -28,6 +28,7 @@ exports.createUser = (req, res, next) => {
     })
     .then((result) => {
       console.log("Created User");
+      return result;
     })
     .catch((err) => {
       console.log(err);
