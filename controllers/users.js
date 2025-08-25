@@ -27,9 +27,7 @@ exports.createUser = (req, res, next) => {
       return user.save();
     })
     .then((result) => {
-      console.log("Created User");
-      console.log(result);
-      res.status(200);
+      res.status(200).json({ userData: result });
       return;
     })
     .catch((err) => {
