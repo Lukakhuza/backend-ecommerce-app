@@ -157,7 +157,8 @@ exports.updateUser = (req, res, next) => {
       return user.save();
     })
     .then((result) => {
-      console.log("Updated User!");
+      res.status(200).json({ userData: result });
+      return;
     })
     .catch((err) => {
       console.log(err);
