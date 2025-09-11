@@ -34,6 +34,13 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
+  favorites: {
+    items: [
+      {
+        id: { type: Number, required: false },
+      },
+    ],
+  },
   cart: {
     items: [
       {

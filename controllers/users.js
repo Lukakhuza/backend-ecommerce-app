@@ -11,7 +11,6 @@ exports.createUser = (req, res, next) => {
   const address = req.body.address;
   const shopFor = req.body.shopFor;
 
-  console.log(req.body);
   bcrypt
     .hash(password, 12)
     .then((hashedPassword) => {
