@@ -28,7 +28,7 @@ router.post("/delete-from-cart", productsController.deleteFromCart);
 router.post("/add-to-favorites", productsController.addToFavorites);
 
 // Remove product from favorites
-router.post("/remove-from-favorites", productsController.removeFromFavorites);
+// router.post("/remove-from-favorites", productsController.removeFromFavorites);
 
 // router.post("/payment-sheet", productsController.paymentSheetFunction);
 
