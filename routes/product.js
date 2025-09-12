@@ -24,6 +24,12 @@ router.post("/add-to-cart", productsController.postCart);
 
 router.post("/delete-from-cart", productsController.deleteFromCart);
 
+// Add product to favorites
+router.post("/add-to-favorites", productsController.addToFavorites);
+
+// Remove product from favorites
+router.post("/remove-from-favorites", productsController.removeFromFavorites);
+
 // router.post("/payment-sheet", productsController.paymentSheetFunction);
 
 module.exports = router;

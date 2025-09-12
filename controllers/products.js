@@ -217,6 +217,10 @@ exports.deleteFromCart = (req, res, next) => {
     });
 };
 
+exports.addToFavorites = (req, res, next) => {
+  console.log("Test 60", req.body);
+};
+
 // exports.testStripe = (req, res, next) => {
 //   console.log("Testing stripe");
 //   stripe.checkout.sessions
