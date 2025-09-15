@@ -103,7 +103,6 @@ exports.postCart = (req, res, next) => {
   };
   const updatedShopFor = user.shopFor;
 
-  console.log("Test 12", updatedCartItem);
   User.findOne({ email: user.email })
     .then((user) => {
       user.firstName = updatedFirstName;
@@ -208,7 +207,6 @@ exports.deleteFromCart = (req, res, next) => {
       return user.save();
     })
     .then((result) => {
-      console.log("Test 43", result);
       console.log("Updated User!");
       return result;
     })
@@ -219,8 +217,15 @@ exports.deleteFromCart = (req, res, next) => {
 
 exports.addToFavorites = (req, res, next) => {
   const userId = req.body.userId;
+  const productId = req.body.productId;
   User.findById(userId).then((user) => {
-    console.log("Test 68 ", user);
+    if (user.favorites.items.includes(productId)) {
+      console.log("Includes");
+    } else {
+      user.favorites.items.push(productId);
+    }
+
+    return user.save();
   });
 };
 
