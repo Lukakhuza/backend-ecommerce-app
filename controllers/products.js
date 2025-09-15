@@ -218,7 +218,10 @@ exports.deleteFromCart = (req, res, next) => {
 };
 
 exports.addToFavorites = (req, res, next) => {
-  console.log("Test 60", req.body);
+  const userId = req.body.userId;
+  User.findById(userId).then((user) => {
+    console.log("Test 68 ", user);
+  });
 };
 
 // exports.testStripe = (req, res, next) => {
