@@ -219,14 +219,10 @@ exports.addToFavorites = (req, res, next) => {
   const userId = req.body.userId;
   const productId = req.body.productId;
   User.findById(userId).then((user) => {
-    console.log("Test 889", user);
-    console.log("Test: ProductId", productId);
     if (user.favorites.items.includes(productId)) {
       console.log("Includes");
     } else {
-      // console.log("Test 20", user.favorites.items.push(1547));
-      user.favorites.items.push(156);
-      console.log("Does not include");
+      user.favorites.items.push(Number(productId));
     }
 
     return user.save();
