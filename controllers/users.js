@@ -130,6 +130,7 @@ exports.getUserByEmail = (req, res, next) => {
       phoneNumber: user.phoneNumber,
       address: user.address,
       shopFor: user.shopFor,
+      favorites: user.favorites,
       cart: user.cart,
     });
 
