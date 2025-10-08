@@ -224,7 +224,8 @@ exports.addToFavorites = (req, res, next) => {
     if (user.favorites.items.includes(productId)) {
       console.log("Includes");
     } else {
-      user.favorites.items.push(parseInt(productId));
+      console.log("Test 20", user.favorites);
+      // user.favorites.items.push(parseInt(productId));
       console.log("Does not include");
     }
 
