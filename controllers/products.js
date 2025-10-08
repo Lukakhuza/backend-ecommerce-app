@@ -228,7 +228,7 @@ exports.addToFavorites = (req, res, next) => {
       console.log("Does not include");
     }
 
-    // return user.save();
+    return user.save();
   });
 };
 
