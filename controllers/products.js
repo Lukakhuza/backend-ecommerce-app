@@ -92,7 +92,7 @@ exports.postCart = (req, res, next) => {
     price: req.body.productData.price,
   };
 
-  const userId = req.body.userData.userId;
+  const userId = req.body;
 
   console.log("User Id: ", userId);
 
