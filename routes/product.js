@@ -25,7 +25,7 @@ router.post("/add-to-cart", productsController.postCart);
 router.post("/delete-from-cart", productsController.deleteFromCart);
 
 // Add product to favorites
-router.put("/add-to-favorites", productsController.saveUpdatedFavorites);
+router.put("/save-updated-favorites", productsController.saveUpdatedFavorites);
 
 // Remove product from favorites
 // router.post("/remove-from-favorites", productsController.removeFromFavorites);
