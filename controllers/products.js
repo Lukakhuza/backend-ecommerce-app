@@ -92,12 +92,11 @@ exports.postCart = (req, res, next) => {
     price: req.body.productData.price,
   };
 
-  const userId = req.body;
+  const userId = req.body.userId;
 
-  console.log("User Id: ", req.body.userId);
-  console.log("Product Data: ", req.body.productData);
-
-  // User.findById();
+  User.findById(userId).then((user) => {
+    console.log("User: ", user);
+  });
 
   // const user = req.body.userData;
   // const updatedFirstName = user.firstName;
