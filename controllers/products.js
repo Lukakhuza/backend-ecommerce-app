@@ -94,8 +94,8 @@ exports.postCart = (req, res, next) => {
 
   const userId = req.body;
 
-  console.log("User Id: ", userId.userId);
-  console.log("Product Data: ", userId.productData);
+  console.log("User Id: ", req.body.userId);
+  console.log("Product Data: ", req.body.productData);
 
   // User.findById();
 
