@@ -94,9 +94,31 @@ exports.postCart = (req, res, next) => {
 
   const userId = req.body.userId;
 
-  User.findById(userId).then((user) => {
-    console.log("User: ", user);
-  });
+  User.findById(userId)
+    .then((user) => {
+      console.log("User: ", user);
+      let productIndexInCart = -1;
+      // Check if the product is already in the cart. If so, update quantity.
+      for (i = 0; i < user.cart.items.length; i++) {
+        if (product.id === user.cart.items[i].product.id) {
+          productIndexInCart = i;
+          console.log(productIndexInCart);
+        }
+      }
+
+      //     // If the product is not already in the cart, add it to the cart
+      if (productIndexInCart === -1) {
+        user.cart.items.push(updatedCartItem);
+      } else {
+        // if it is already in the cart, update the quantity.
+        user.cart.items[productIndexInCart].quantity +=
+          updatedCartItem.quantity;
+      }
+      return user.save();
+    })
+    .then((result) => {
+      console.log("Result: ", result);
+    });
 
   // const user = req.body.userData;
   // const updatedFirstName = user.firstName;
