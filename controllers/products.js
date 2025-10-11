@@ -219,6 +219,7 @@ exports.saveUpdatedFavorites = (req, res, next) => {
   const userId = req.body.userId;
   const updatedFavorites = req.body.updatedFavorites;
   User.findById(userId).then((user) => {
+    console.log("Updated favorites:", updatedFavorites);
     user.favorites.items = updatedFavorites;
     return user.save();
   });
