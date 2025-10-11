@@ -93,6 +93,10 @@ exports.postCart = (req, res, next) => {
   };
 
   const userId = req.body.userId;
+  const updatedCartItem = {
+    product: product,
+    quantity: req.body.productData.quantity,
+  };
 
   User.findById(userId)
     .then((user) => {
