@@ -133,6 +133,7 @@ exports.postCart = (req, res, next) => {
         favorites: result.favorites,
         cart: result.cart,
       });
+      console.log(result1);
 
       const userData = JSON.parse(result1);
       res.status(200).json({ user: userData });
