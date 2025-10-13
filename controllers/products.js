@@ -85,7 +85,6 @@ exports.deleteProduct = (req, res, next) => {
 };
 
 exports.postCart = (req, res, next) => {
-  // const product = req.body.productData;
   const product = {
     id: req.body.productData.id,
     title: req.body.productData.title,
@@ -100,7 +99,6 @@ exports.postCart = (req, res, next) => {
 
   User.findById(userId)
     .then((user) => {
-      console.log("User: ", user);
       let productIndexInCart = -1;
       // Check if the product is already in the cart. If so, update quantity.
       for (i = 0; i < user.cart.items.length; i++) {
@@ -109,8 +107,7 @@ exports.postCart = (req, res, next) => {
           console.log(productIndexInCart);
         }
       }
-
-      //     // If the product is not already in the cart, add it to the cart
+      // If the product is not already in the cart, add it to the cart
       if (productIndexInCart === -1) {
         user.cart.items.push(updatedCartItem);
       } else {
@@ -121,7 +118,6 @@ exports.postCart = (req, res, next) => {
       return user.save();
     })
     .then((result) => {
-      console.log("Result: ", result);
       const result1 = JSON.stringify({
         firstName: result.firstName,
         lastName: result.lastName,
@@ -133,75 +129,9 @@ exports.postCart = (req, res, next) => {
         favorites: result.favorites,
         cart: result.cart,
       });
-      console.log(result1);
-
       const userData = JSON.parse(result1);
       res.status(200).json({ user: userData });
     });
-
-  // const user = req.body.userData;
-  // const updatedFirstName = user.firstName;
-  // const updatedLastName = user.lastName;
-  // const updatedEmail = user.email;
-  // const updatedPhoneNumber = user.phoneNumber;
-  // const updatedAddress = user.address;
-  // const updatedCartItem = {
-  //   product: product,
-  //   quantity: req.body.productData.quantity,
-  // };
-  // const updatedShopFor = user.shopFor;
-
-  // User.findOne({ email: user.email })
-  //   .then((user) => {
-  //     user.firstName = updatedFirstName;
-  //     user.lastName = updatedLastName;
-  //     user.email = updatedEmail;
-  //     user.phoneNumber = updatedPhoneNumber;
-  //     user.address = updatedAddress;
-  //     user.shopFor = updatedShopFor;
-  //     let productIndexInCart = -1;
-
-  //     // Check if the product is already in the cart. If so, update quantity.
-  //     for (i = 0; i < user.cart.items.length; i++) {
-  //       if (product.id === user.cart.items[i].product.id) {
-  //         productIndexInCart = i;
-  //         console.log(productIndexInCart);
-  //       }
-  //     }
-
-  //     // If the product is not already in the cart, add it to the cart
-  //     if (productIndexInCart === -1) {
-  //       user.cart.items.push(updatedCartItem);
-  //     } else {
-  //       // if it is already in the cart, update the quantity.
-  //       user.cart.items[productIndexInCart].quantity +=
-  //         updatedCartItem.quantity;
-  //     }
-  //     return user.save();
-  //   })
-  //   .then((result) => {
-  //     console.log("Test 42", result);
-
-  //     const result1 = JSON.stringify({
-  //       firstName: result.firstName,
-  //       lastName: result.lastName,
-  //       email: result.email,
-  //       password: result.password,
-  //       phoneNumber: result.phoneNumber,
-  //       address: result.address,
-  //       shopFor: result.shopFor,
-  //       cart: result.cart,
-  //     });
-
-  //     const userData = JSON.parse(result1);
-  //     console.log("Test 51", userData);
-  //     res.status(200).json({ user: userData });
-  //     console.log("Updated User!");
-  //     return result1;
-  //   })
-  //   .catch((err) => {
-  //     console.log(err);
-  //   });
 };
 
 exports.deleteFromCart = (req, res, next) => {
