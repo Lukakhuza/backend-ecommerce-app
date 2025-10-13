@@ -22,7 +22,11 @@ router.get("/delete-product/:productId", productsController.deleteProduct);
 // Add product to cart
 router.post("/add-to-cart", productsController.postCart);
 
+// Remove product from cart
 router.post("/delete-from-cart", productsController.deleteFromCart);
+
+// Update cart in database
+router.post("/update-cart", productsController.updateCart);
 
 // Add product to favorites
 router.put("/save-updated-favorites", productsController.saveUpdatedFavorites);
