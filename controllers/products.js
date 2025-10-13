@@ -122,6 +122,20 @@ exports.postCart = (req, res, next) => {
     })
     .then((result) => {
       console.log("Result: ", result);
+      const result1 = JSON.stringify({
+        firstName: result.firstName,
+        lastName: result.lastName,
+        email: result.email,
+        password: result.password,
+        phoneNumber: result.phoneNumber,
+        address: result.address,
+        shopFor: result.shopFor,
+        favorites: result.favorites,
+        cart: result.cart,
+      });
+
+      const userData = JSON.parse(result1);
+      res.status(200).json({ user: userData });
     });
 
   // const user = req.body.userData;
