@@ -197,7 +197,7 @@ exports.updateCart = (req, res, next) => {
   const userId = req.body.userId;
   const cartItems = req.body.cartItems;
 
-  User.findById("68f1fe03ac4a9ba7289b2d80").then((user) => {
+  User.findById("68e5ded5d57dd91907dd16da").then((user) => {
     console.log("User here: ", user);
     console.log("Cart Items: ", cartItems);
     user.cart.items = cartItems;
