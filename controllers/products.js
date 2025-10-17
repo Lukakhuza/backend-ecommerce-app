@@ -199,7 +199,9 @@ exports.updateCart = (req, res, next) => {
   const userId = req.body.userId;
   const cartItems = req.body.cartItems;
 
-  console.log("UserId 2: ", userId);
+  if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
+    return res.status(400).json({ message: "Invalid or missing userId" });
+  }
 
   User.findById(userId).then((user) => {
     console.log("User here: ", user);
