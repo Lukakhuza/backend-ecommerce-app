@@ -38,6 +38,9 @@ exports.createUser = (req, res, next) => {
 exports.loginUser = async (req, res, next) => {
   const email = req.body.email.toLowerCase();
   const password = req.body.password;
+
+  console.log("Email 3:", email);
+  console.log("Pass3:", password);
   try {
     const user = await User.findOne({ email: email });
     if (!user) {
