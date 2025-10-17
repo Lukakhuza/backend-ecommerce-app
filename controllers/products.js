@@ -1,3 +1,4 @@
+const mongoose = require("mongoose");
 const Product = require("../models/product");
 const User = require("../models/user");
 // const stripe = require("stripe")(process.env.STRIPE_KEY);
@@ -204,10 +205,7 @@ exports.updateCart = (req, res, next) => {
   }
 
   User.findById(userId).then((user) => {
-    console.log("User here: ", user);
-    console.log("Cart Items: ", cartItems);
     user.cart.items = cartItems;
-    console.log("Updated cart items: ", user.cart.items);
     return user.save();
   });
 };
