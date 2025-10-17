@@ -194,52 +194,14 @@ exports.deleteFromCart = (req, res, next) => {
 };
 
 exports.updateCart = (req, res, next) => {
-  console.log("Test 909", req.body);
-  // const product = {
-  //   id: req.body.productData.id,
-  //   title: req.body.productData.title,
-  //   price: req.body.productData.price,
-  // };
-  // const userId = req.body.userId;
-  // const updatedCartItem = {
-  //   product: product,
-  //   quantity: req.body.productData.quantity,
-  // };
-  // User.findById(userId)
-  //   .then((user) => {
-  //     let productIndexInCart = -1;
-  //     // Check if the product is already in the cart. If so, update quantity.
-  //     for (i = 0; i < user.cart.items.length; i++) {
-  //       if (product.id === user.cart.items[i].product.id) {
-  //         productIndexInCart = i;
-  //         console.log(productIndexInCart);
-  //       }
-  //     }
-  //     // If the product is not already in the cart, add it to the cart
-  //     if (productIndexInCart === -1) {
-  //       user.cart.items.push(updatedCartItem);
-  //     } else {
-  //       // if it is already in the cart, update the quantity.
-  //       user.cart.items[productIndexInCart].quantity +=
-  //         updatedCartItem.quantity;
-  //     }
-  //     return user.save();
-  //   })
-  //   .then((result) => {
-  //     const result1 = JSON.stringify({
-  //       firstName: result.firstName,
-  //       lastName: result.lastName,
-  //       email: result.email,
-  //       password: result.password,
-  //       phoneNumber: result.phoneNumber,
-  //       address: result.address,
-  //       shopFor: result.shopFor,
-  //       favorites: result.favorites,
-  //       cart: result.cart,
-  //     });
-  //     const userData = JSON.parse(result1);
-  //     res.status(200).json({ user: userData });
-  //   });
+  const userId = req.body.userId;
+  const cartItems = req.body.cartItems;
+
+  User.findById(userId).then((user) => {
+    console.log("User here: ", user);
+    user.cart.items = cartItems;
+    return user.save();
+  });
 };
 
 exports.saveUpdatedFavorites = (req, res, next) => {
