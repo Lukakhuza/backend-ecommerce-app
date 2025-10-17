@@ -199,6 +199,7 @@ exports.updateCart = (req, res, next) => {
 
   User.findById(userId).then((user) => {
     console.log("User here: ", user);
+    console.log("Cart Items: ", cartItems);
     user.cart.items = cartItems;
     return user.save();
   });
