@@ -97,6 +97,8 @@ exports.postCart = (req, res, next) => {
     quantity: req.body.productData.quantity,
   };
 
+  console.log("UserId 1: ", userId);
+
   User.findById(userId)
     .then((user) => {
       let productIndexInCart = -1;
@@ -197,6 +199,8 @@ exports.updateCart = (req, res, next) => {
   const userId = req.body.userId;
   const cartItems = req.body.cartItems;
 
+  console.log("UserId 2: ", userId);
+
   User.findById(userId).then((user) => {
     console.log("User here: ", user);
     console.log("Cart Items: ", cartItems);
@@ -209,6 +213,8 @@ exports.updateCart = (req, res, next) => {
 exports.saveUpdatedFavorites = (req, res, next) => {
   const userId = req.body.userId;
   const updatedFavorites = req.body.updatedFavorites;
+
+  console.log("UserId 3: ", userId);
   User.findById(userId).then((user) => {
     console.log("Updated favorites:", updatedFavorites);
     user.favorites.items = updatedFavorites;
