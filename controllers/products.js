@@ -201,6 +201,7 @@ exports.updateCart = (req, res, next) => {
     console.log("User here: ", user);
     console.log("Cart Items: ", cartItems);
     user.cart.items = cartItems;
+    console.log("Updated cart items: ", user.cart.items);
     return user.save();
   });
 };
