@@ -124,6 +124,9 @@ exports.getUser = (req, res, next) => {
 
 exports.getUserByEmail = (req, res, next) => {
   User.findOne({ email: req.body.email }).then((user) => {
+    console.log("Test 23", req.body.email);
+    console.log("Test 20", user);
+
     const result = JSON.stringify({
       id: user.id,
       firstName: user.firstName,
