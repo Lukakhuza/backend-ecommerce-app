@@ -143,8 +143,10 @@ exports.getUserByEmail = (req, res, next) => {
 
     console.log("Test 25", result);
 
-    // const userData = JSON.parse(result);
-    // res.status(200).json({ user: userData });
+    const userData = JSON.parse(result);
+
+    console.log("Test 26", userData);
+    res.status(200).json({ user: userData });
   });
 };
 
