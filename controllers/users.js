@@ -128,18 +128,20 @@ exports.getUserByEmail = (req, res, next) => {
     console.log("Test 23", req.body.email);
     console.log("Test 20", user);
 
-    // const result = JSON.stringify({
-    //   id: user.id,
-    //   firstName: user.firstName,
-    //   lastName: user.lastName,
-    //   email: user.email,
-    //   password: user.password,
-    //   phoneNumber: user.phoneNumber,
-    //   address: user.address,
-    //   shopFor: user.shopFor,
-    //   favorites: user.favorites,
-    //   cart: user.cart,
-    // });
+    const result = JSON.stringify({
+      id: user._id,
+      firstName: user.firstName,
+      lastName: user.lastName,
+      email: user.email,
+      password: user.password,
+      phoneNumber: user.phoneNumber,
+      address: user.address,
+      shopFor: user.shopFor,
+      favorites: user.favorites,
+      cart: user.cart,
+    });
+
+    console.log("Test 25", result);
 
     // const userData = JSON.parse(result);
     // res.status(200).json({ user: userData });
