@@ -201,12 +201,14 @@ exports.updateCart = (req, res, next) => {
   const cartItems = req.body.cartItems;
 
   console.log("Test 52", cartItems);
+  console.log("Test 53", userId);
 
   if (!userId || !mongoose.Types.ObjectId.isValid(userId)) {
     return res.status(400).json({ message: "Invalid or missing userId" });
   }
 
   User.findById(userId).then((user) => {
+    console.log("User: ", user);
     user.cart.items = cartItems;
     return user.save();
   });
