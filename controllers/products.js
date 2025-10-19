@@ -267,12 +267,12 @@ exports.saveUpdatedFavorites = (req, res, next) => {
 //   });
 // };
 
-exports.createPaymentSheet = (req, res, next) => {
+exports.createPaymentSheet = async (req, res, next) => {
   const { customerId } = req.body;
 
   console.log("StripeTest: ", stripe.ephemeralKeys);
 
-  const ephemeralKey = stripe.ephemeralKeys.create(
+  const ephemeralKey = await stripe.ephemeralKeys.create(
     { customer: customerId },
     { apiVersion: "2024-06-20" }
   );
