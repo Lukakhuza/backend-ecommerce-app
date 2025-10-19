@@ -268,8 +268,13 @@ exports.saveUpdatedFavorites = (req, res, next) => {
 // };
 
 exports.createPaymentSheet = (req, res, next) => {
-  const result = req.body;
-  console.log("Test 244", result);
+  const { customerId } = req.body;
+
+  const ephemeralKey = stripe.ephemeralKeys.create(
+    { customer: customerId },
+    { apiVersion: "2024-06-20" }
+  );
+  console.log("Ephemeral Key: ", ephemeralKey);
 };
 
 // exports.createPaymentIntent = (req, res, next) => {
