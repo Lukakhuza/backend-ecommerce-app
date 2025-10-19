@@ -270,14 +270,23 @@ exports.saveUpdatedFavorites = (req, res, next) => {
 exports.createPaymentSheet = async (req, res, next) => {
   const { customerId } = req.body;
 
-  console.log("StripeTest: ", stripe.ephemeralKeys);
-
   const ephemeralKey = await stripe.ephemeralKeys.create(
     { customer: customerId },
     { apiVersion: "2024-06-20" }
   );
 
-  console.log("777 Ephemeral Key: ", ephemeralKey);
+  const paymentIntent = await stripe.paymentIntents.create({
+    amount: 5150,
+    currency: "usd",
+    customer: customerId,
+    automatic_payment_methods: { enabled: true },
+  });
+
+  res.status(200).json({
+    paymentIntent: paymentIntent.client_secret,
+    ephemeralKey: ephemeralKey.secret,
+    customerId,
+  });
 };
 
 // exports.createPaymentIntent = (req, res, next) => {
