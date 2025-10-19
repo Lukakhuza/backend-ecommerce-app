@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 const Product = require("../models/product");
 const User = require("../models/user");
-// const stripe = require("stripe")(process.env.STRIPE_KEY);
+const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 exports.createProduct = (req, res, next) => {
   const title = "Title 5";
@@ -266,6 +266,11 @@ exports.saveUpdatedFavorites = (req, res, next) => {
 //     sessionId: "",
 //   });
 // };
+
+exports.createPaymentSheet = (req, res, next) => {
+  const result = req.body;
+  console.log("Test 244", result);
+};
 
 // exports.createPaymentIntent = (req, res, next) => {
 //   console.log("Test 100.05");

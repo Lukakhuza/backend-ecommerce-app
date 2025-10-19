@@ -36,4 +36,6 @@ router.put("/save-updated-favorites", productsController.saveUpdatedFavorites);
 
 // router.post("/payment-sheet", productsController.paymentSheetFunction);
 
+router.post("/create-payment-sheet", productsController.createPaymentSheet);
+
 module.exports = router;
