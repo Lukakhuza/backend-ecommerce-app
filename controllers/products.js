@@ -276,6 +276,8 @@ exports.createPaymentSheet = (req, res, next) => {
     { customer: customerId },
     { apiVersion: "2024-06-20" }
   );
+
+  console.log("777 Ephemeral Key: ", ephemeralKey);
 };
 
 // exports.createPaymentIntent = (req, res, next) => {
