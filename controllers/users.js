@@ -50,8 +50,6 @@ exports.createCustomerInStripe = async (req, res, next) => {
     console.error("Error creating customer:", error);
     res.status(500).json({ error: error.message });
   }
-
-  return;
 };
 
 exports.loginUser = async (req, res, next) => {
