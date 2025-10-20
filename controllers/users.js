@@ -39,6 +39,7 @@ exports.createUser = (req, res, next) => {
 };
 
 exports.createCustomerInStripe = async (req, res, next) => {
+  console.log(req.body);
   try {
     const { email, name } = req.body; // optional
     const customer = await stripe.customers.create({
