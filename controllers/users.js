@@ -39,12 +39,27 @@ exports.createUser = (req, res, next) => {
 };
 
 exports.createCustomerInStripe = async (req, res, next) => {
-  console.log(req.body);
+  const email = req.body.email;
+  const name = req.body.firstName + " " + req.body.lastName;
+  const phone = req.body.phoneNumber;
+  // const description = "Customer created automatically";
+  const address = {
+    line1: req.body.address.addressLine1,
+    city: req.body.address.city,
+    state: req.body.address.state,
+    postal_code: req.body.address.zipcode,
+    country: "US",
+  };
+  const metadata = {
+    userId: "testUserId", // Your MongoDB or app user ID
+  };
+
   try {
-    const { email, name } = req.body; // optional
     const customer = await stripe.customers.create({
-      email: email || "test@example.com",
-      name: name || "Test User",
+      email: email,
+      name: name,
+      phone: phone,
+      address: address,
     });
 
     res.json(customer);
