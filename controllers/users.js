@@ -10,6 +10,7 @@ exports.createUser = (req, res, next) => {
   const phoneNumber = req.body.phoneNumber;
   const address = req.body.address;
   const shopFor = req.body.shopFor;
+  const stripeCustomerId = req.body.stripeCustomerId;
 
   bcrypt
     .hash(password, 12)
@@ -22,6 +23,7 @@ exports.createUser = (req, res, next) => {
         phoneNumber: phoneNumber,
         address: address,
         shopFor: shopFor,
+        stripeCustomerId: stripeCustomerId,
       });
 
       return user.save();
@@ -134,6 +136,7 @@ exports.getUserByEmail = (req, res, next) => {
       shopFor: user.shopFor,
       favorites: user.favorites,
       cart: user.cart,
+      stripeCustomerId: user.stripeCustomerId,
     });
 
     const userData = JSON.parse(result);
@@ -149,6 +152,7 @@ exports.updateUser = (req, res, next) => {
   const updatedPhoneNumber = req.body.phoneNumber;
   const updatedAddress = req.body.address;
   const updatedShopFor = "Men";
+  const stripeCustomerId = req.body.stripeCustomerId;
   User.findOne({ email: req.body.email })
     .then((user) => {
       user.firstName = updatedFirstName;
@@ -157,6 +161,7 @@ exports.updateUser = (req, res, next) => {
       user.phoneNumber = updatedPhoneNumber;
       user.address = updatedAddress;
       user.shopFor = updatedShopFor;
+      user.stripeCustomerId = stripeCustomerId;
       return user.save();
     })
     .then((result) => {
