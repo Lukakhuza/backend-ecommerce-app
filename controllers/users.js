@@ -38,7 +38,19 @@ exports.createUser = (req, res, next) => {
 };
 
 exports.createCustomerInStripe = async (req, res, next) => {
-  console.log("Test 15", req.body);
+  try {
+    const { email, name } = req.body; // optional
+    const customer = await stripe.customers.create({
+      email: email || "test@example.com",
+      name: name || "Test User",
+    });
+
+    res.json(customer);
+  } catch (error) {
+    console.error("Error creating customer:", error);
+    res.status(500).json({ error: error.message });
+  }
+
   return;
 };
 
