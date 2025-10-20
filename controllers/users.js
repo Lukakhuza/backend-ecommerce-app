@@ -1,6 +1,7 @@
 const User = require("../models/user");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const { default: Stripe } = require("stripe");
 const stripe = require("stripe")(process.env.STRIPE_KEY);
 
 exports.createUser = (req, res, next) => {
@@ -39,28 +40,42 @@ exports.createUser = (req, res, next) => {
 };
 
 exports.createCustomerInStripe = async (req, res, next) => {
-  const email = req.body.email;
-  const name = req.body.firstName + " " + req.body.lastName;
-  const phone = req.body.phoneNumber;
-  // const description = "Customer created automatically";
-  const address = {
-    line1: req.body.address.addressLine1,
-    city: req.body.address.city,
-    state: req.body.address.state,
-    postal_code: req.body.address.zipcode,
-    country: "US",
+  const { email, firstName, lastName, phoneNumber, description, address } =
+    req.body;
+
+  const customerData = {
+    email: email,
   };
-  const metadata = {
-    userId: "testUserId", // Your MongoDB or app user ID
-  };
+  // const email = req.body.email;
+
+  if (firstName || lastName) {
+    customerData.name = `${firstName ?? ""} ${lastName ?? ""}`.trim();
+  }
+
+  if (phoneNumber) {
+    customerData.phone = phoneNumber;
+  }
+
+  if (description) {
+    customerData.description = description;
+  }
+
+  if (address) {
+    customerData.address = {
+      line1: address.addressLine1,
+      city: address.city,
+      state: address.state,
+      postal_code: address.zipcode,
+      country: "US",
+    };
+  }
+
+  // const metadata = {
+  //   userId: "testUserId", // Your MongoDB or app user ID
+  // };
 
   try {
-    const customer = await stripe.customers.create({
-      email: email,
-      name: name,
-      phone: phone,
-      address: address,
-    });
+    const customer = await stripe.customers.create(customerData);
 
     res.json(customer);
   } catch (error) {
