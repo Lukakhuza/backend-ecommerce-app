@@ -39,6 +39,7 @@ exports.createUser = (req, res, next) => {
 
 exports.createCustomerInStripe = async (req, res, next) => {
   console.log("Test 15", req.body);
+  return;
 };
 
 exports.loginUser = async (req, res, next) => {
