@@ -37,6 +37,10 @@ exports.createUser = (req, res, next) => {
     });
 };
 
+exports.createCustomerInStripe = async (req, res, next) => {
+  console.log("Test 15", req.body);
+};
+
 exports.loginUser = async (req, res, next) => {
   const email = req.body.email.toLowerCase();
   const password = req.body.password;

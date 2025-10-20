@@ -7,6 +7,12 @@ const router = express.Router();
 // Create User
 router.put("/create-user", usersController.createUser);
 
+// Create customer in stripe
+router.post(
+  "/create-customer-in-stripe",
+  usersController.createCustomerInStripe
+);
+
 // Log In User
 router.post("/login", usersController.loginUser);
 
