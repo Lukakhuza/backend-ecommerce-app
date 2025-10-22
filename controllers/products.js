@@ -265,7 +265,7 @@ exports.saveUpdatedFavorites = (req, res, next) => {
 // };
 
 exports.createPaymentSheet = async (req, res, next) => {
-  const { customerId } = req.body;
+  const { customerId, totalAmount, currency } = req.body;
 
   const ephemeralKey = await stripe.ephemeralKeys.create(
     { customer: customerId },
@@ -273,8 +273,8 @@ exports.createPaymentSheet = async (req, res, next) => {
   );
 
   const paymentIntent = await stripe.paymentIntents.create({
-    amount: 5150,
-    currency: "usd",
+    amount: totalAmount,
+    currency: currency,
     customer: customerId,
     automatic_payment_methods: { enabled: true },
   });
