@@ -43,6 +43,8 @@ exports.createCustomerInStripe = async (req, res, next) => {
   const { email, firstName, lastName, phoneNumber, description, address } =
     req.body;
 
+  console.log("Test 3", req.body);
+
   const customerData = {
     email: email,
   };
