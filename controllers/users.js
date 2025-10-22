@@ -200,6 +200,8 @@ exports.updateUser = (req, res, next) => {
   const updatedAddress = req.body.address;
   const updatedShopFor = "Men";
   const stripeCustomerId = req.body.stripeCustomerId;
+
+  console.log("Stripe Customer Id: ", stripeCustomerId);
   User.findOne({ email: req.body.email })
     .then((user) => {
       user.firstName = updatedFirstName;
