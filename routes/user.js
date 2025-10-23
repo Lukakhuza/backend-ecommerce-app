@@ -33,7 +33,4 @@ router.put("/update-user/:userId", usersController.updateUser);
 // Delete an user
 router.get("/delete-user/:userId", usersController.deleteUser);
 
-// Clear Cart
-router.put("/clear-cart", usersController.clearCart);
-
 module.exports = router;

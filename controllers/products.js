@@ -278,6 +278,7 @@ exports.createPaymentSheet = async (req, res, next) => {
     customer: customerId,
     automatic_payment_methods: { enabled: true },
   });
+  console.log("Payment Intent: ", paymentIntent);
 
   res.status(200).json({
     paymentIntent: paymentIntent.client_secret,
