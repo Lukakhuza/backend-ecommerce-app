@@ -76,6 +76,8 @@ exports.createCustomerInStripe = async (req, res, next) => {
   //   userId: "testUserId", // Your MongoDB or app user ID
   // };
 
+  console.log("Customer Data: ", customerData);
+
   try {
     const customer = await stripe.customers.create(customerData);
 
