@@ -40,16 +40,13 @@ exports.createUser = (req, res, next) => {
 };
 
 exports.createCustomerInStripe = async (req, res, next) => {
-  const { email, firstName, lastName, phoneNumber, description, address } =
+  const { email, firstName, lastName, phoneNumber, description, address, _id } =
     req.body.userData;
-
-  console.log("Test 3", req.body);
-  console.log("Test 4", email);
 
   const customerData = {
     email: email,
+    userId: _id, // UserId in MongoDB
   };
-  // const email = req.body.email;
 
   if (firstName || lastName) {
     customerData.name = `${firstName ?? ""} ${lastName ?? ""}`.trim();
@@ -72,12 +69,6 @@ exports.createCustomerInStripe = async (req, res, next) => {
       country: "US",
     };
   }
-
-  // const metadata = {
-  //   userId: "testUserId", // Your MongoDB or app user ID
-  // };
-
-  console.log("Customer Data: ", customerData);
 
   try {
     const customer = await stripe.customers.create(customerData);
