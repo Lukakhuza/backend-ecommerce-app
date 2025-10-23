@@ -284,6 +284,7 @@ exports.createPaymentSheet = async (req, res, next) => {
     paymentIntent: paymentIntent.client_secret,
     ephemeralKey: ephemeralKey.secret,
     customerId,
+    paymentIntentId: paymentIntent.id,
   });
 };
 
