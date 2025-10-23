@@ -230,3 +230,11 @@ exports.deleteUser = (req, res, next) => {
       console.log(err);
     });
 };
+
+exports.clearCart = (req, res, next) => {
+  const userId = req.body.userId;
+
+  User.findById(userId).then((user) => {
+    console.log("Test 1", user);
+  });
+};
