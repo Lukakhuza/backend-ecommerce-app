@@ -45,7 +45,7 @@ exports.createCustomerInStripe = async (req, res, next) => {
 
   const customerData = {
     email: email,
-    metaData: {
+    metadata: {
       userId: _id, // UserId in MongoDB
     },
   };
