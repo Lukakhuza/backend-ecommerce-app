@@ -16,5 +16,5 @@ exports.createOrder = async (req, res, next) => {
     totalAmount: 100.25,
   });
   const result = await order.save();
-  console.log("Result :", result);
+  res.json(result);
 };
