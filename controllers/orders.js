@@ -1,6 +1,7 @@
 const Order = require("../models/order");
 
 exports.createOrder = async (req, res, next) => {
+  console.log("Test 2423");
   const order = new Order({
     userId: "68f9e314d505a4f25be86195",
     items: [
