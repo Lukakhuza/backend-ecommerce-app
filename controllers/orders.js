@@ -12,3 +12,9 @@ exports.createOrder = async (req, res, next) => {
   const result = await order.save();
   res.json(result);
 };
+
+exports.fetchOrders = async (req, res, next) => {
+  const userId = req.params.userId;
+
+  console.log("User Id: ", userId);
+};
