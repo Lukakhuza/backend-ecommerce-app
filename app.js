@@ -38,6 +38,7 @@ app.use((req, res, next) => {
 
 const productRoutes = require("./routes/product");
 const userRoutes = require("./routes/user");
+const orderRoutes = require("./routes/order");
 const authRoutes = require("./routes/auth");
 
 // app.use("/", (req, res, next) => {
@@ -72,6 +73,7 @@ app.use("/places", async (req, res, next) => {
 
 app.use("/product", productRoutes);
 app.use("/user", userRoutes);
+app.use("/order", orderRoutes);
 app.use("/auth", authRoutes);
 // const server = http.createServer(app);
 
