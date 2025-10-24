@@ -10,19 +10,18 @@ const orderSchema = new Schema({
   },
   items: [
     {
-      productId: {
-        type: Schema.Types.ObjectId,
-        ref: "Product",
+      _id: {
+        type: String,
+        required: true,
+      },
+      product: {
+        type: Object,
         required: true,
       },
       quantity: {
         type: Number,
         required: true,
-        min: 1,
       },
-      name: String,
-      priceAtPurchase: Number,
-      image: String,
     },
   ],
 
