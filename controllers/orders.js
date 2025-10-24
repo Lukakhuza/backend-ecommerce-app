@@ -16,5 +16,7 @@ exports.createOrder = async (req, res, next) => {
 exports.fetchOrders = async (req, res, next) => {
   const userId = req.params.userId;
 
-  console.log("User Id: ", userId);
+  Order.find().then((order) => {
+    console.log("Order 1", order);
+  });
 };
