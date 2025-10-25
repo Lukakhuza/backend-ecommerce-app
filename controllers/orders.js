@@ -21,5 +21,5 @@ exports.fetchOrders = async (req, res, next) => {
     userId: new mongoose.Types.ObjectId(userId),
   });
 
-  console.log("Orders", orders);
+  res.status(200).json(orders);
 };
