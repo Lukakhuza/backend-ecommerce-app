@@ -15,8 +15,10 @@ exports.createOrder = async (req, res, next) => {
 
 exports.fetchOrders = async (req, res, next) => {
   const userId = req.params.userId;
-
-  Order.find().then((order) => {
-    console.log("Order 1", order);
+  console.log("user Id", userId);
+  const orders = await Order.find({
+    userId: new mongoose.Types.ObjectId(userId),
   });
+
+  console.log("Orders", orders);
 };
