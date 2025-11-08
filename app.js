@@ -14,6 +14,12 @@ const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: "sessions",
+  connectionOptions: {
+    ssl: true,
+    tlsAllowInvalidCertificates: false,
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  },
 });
 
 app.use(bodyParser.json({ strict: false }));
