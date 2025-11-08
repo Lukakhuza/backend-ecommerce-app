@@ -11,16 +11,16 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster1.7tujvnn.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?w=majority&appName=Cluster1`;
 
 const app = express();
-const store = new MongoDBStore({
-  uri: MONGODB_URI,
-  collection: "sessions",
-  connectionOptions: {
-    ssl: true,
-    tlsAllowInvalidCertificates: false,
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  },
-});
+// const store = new MongoDBStore({
+//   uri: MONGODB_URI,
+//   collection: "sessions",
+//   connectionOptions: {
+//     ssl: true,
+//     tlsAllowInvalidCertificates: false,
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true,
+//   },
+// });
 
 app.use(bodyParser.json({ strict: false }));
 // app.use(
