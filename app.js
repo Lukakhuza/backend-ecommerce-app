@@ -10,9 +10,6 @@ const MongoDBStore = require("connect-mongodb-session")(session);
 
 const MONGODB_URI = `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster1.7tujvnn.mongodb.net/${process.env.MONGO_DEFAULT_DATABASE}?w=majority&appName=Cluster1`;
 
-// mongodb+srv://lukakhuza:<db_password>@cluster1.7tujvnn.mongodb.net/?appName=Cluster1
-// mongodb+srv://lukakhuza:<db_password>@cluster1.7tujvnn.mongodb.net/?appName=Cluster1
-
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
