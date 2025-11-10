@@ -86,7 +86,6 @@ app.use("/auth", authRoutes);
 mongoose
   .connect(MONGODB_URI)
   .then((result) => {
-    console.log("Test 11", result);
     app.listen(process.env.PORT || 3000);
   })
   .catch((err) => {
