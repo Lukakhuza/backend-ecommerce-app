@@ -46,6 +46,7 @@ const productRoutes = require("./routes/product");
 const userRoutes = require("./routes/user");
 const orderRoutes = require("./routes/order");
 const authRoutes = require("./routes/auth");
+const checkoutRoutes = require("./routes/checkout");
 
 // app.use("/", (req, res, next) => {
 // const result = {
@@ -81,6 +82,7 @@ app.use("/product", productRoutes);
 app.use("/user", userRoutes);
 app.use("/order", orderRoutes);
 app.use("/auth", authRoutes);
+app.use("/checkout", checkoutRoutes);
 // const server = http.createServer(app);
 
 mongoose
