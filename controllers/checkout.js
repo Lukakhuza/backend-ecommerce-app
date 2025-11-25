@@ -19,16 +19,14 @@ exports.addPaymentMethod = async (req, res, next) => {
     };
 
     // Update mongoDB database:
-    const response = await User.findOneAndUpdate(
+    const updatedStripePaymentMethod = await User.findOneAndUpdate(
       { _id: userId },
       { $set: { stripePaymentMethod: newPaymentMethod } },
       { new: true }
     );
 
-    console.log("Response Here: ", response);
-
     // Send card details (id, brand, last4)
-    // res.send();
+    res.send(updatedStripePaymentMethod);
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
