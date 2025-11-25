@@ -49,6 +49,10 @@ const userSchema = new Schema({
     type: String,
     required: false,
   },
+  stripePaymentMethod: {
+    type: String,
+    required: false,
+  },
 });
 
 module.exports = mongoose.model("User", userSchema);
