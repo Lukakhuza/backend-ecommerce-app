@@ -10,12 +10,11 @@ exports.addPaymentMethod = async (req, res, next) => {
       customer: "cus_TUFLMZpBJmx1YG",
     });
 
-    console.log("Attached: ", attached);
     const newPaymentMethod = {
       id: attached.id,
       card: {
-        brand: attached.brand,
-        last4: attached.last4,
+        brand: attached.card.brand,
+        last4: attached.card.last4,
       },
     };
 
