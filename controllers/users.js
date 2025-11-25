@@ -13,6 +13,13 @@ exports.createUser = (req, res, next) => {
   const address = req.body.address;
   const shopFor = req.body.shopFor;
   const stripeCustomerId = req.body.stripeCustomerId;
+  const stripePaymentMethod = {
+    id: "",
+    card: {
+      brand: "",
+      last4: "",
+    },
+  };
 
   bcrypt
     .hash(password, 12)
@@ -26,6 +33,7 @@ exports.createUser = (req, res, next) => {
         address: address,
         shopFor: shopFor,
         stripeCustomerId: stripeCustomerId,
+        stripePaymentMethod: stripePaymentMethod,
       });
 
       return user.save();
