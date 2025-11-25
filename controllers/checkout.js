@@ -21,7 +21,8 @@ exports.addPaymentMethod = async (req, res, next) => {
     // Update mongoDB database:
     const response = await User.findOneAndUpdate(
       { _id: userId },
-      { $set: { stripePaymentMethod: newPaymentMethod } }
+      { $set: { stripePaymentMethod: newPaymentMethod } },
+      { new: true }
     );
 
     console.log("Response Here: ", response);
