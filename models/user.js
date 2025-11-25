@@ -50,8 +50,11 @@ const userSchema = new Schema({
     required: false,
   },
   stripePaymentMethod: {
-    type: String,
-    required: false,
+    id: { type: String, required: false },
+    card: {
+      brand: { type: String, required: false },
+      last4: { type: String, required: false },
+    },
   },
 });
 
