@@ -2,12 +2,12 @@ const stripe = require("stripe")(process.env.STRIPE_KEY);
 const User = require("../models/user");
 
 exports.addPaymentMethod = async (req, res, next) => {
-  const { paymentMethodId, userId } = req.body;
+  const { userId, stripeCustomerId, paymentMethodId } = req.body;
 
   try {
     // Attach card to customer:
     const attached = await stripe.paymentMethods.attach(paymentMethodId, {
-      customer: "cus_TUFLMZpBJmx1YG",
+      customer: stripeCustomerId,
     });
 
     const newPaymentMethod = {
@@ -17,6 +17,13 @@ exports.addPaymentMethod = async (req, res, next) => {
         last4: attached.card.last4,
       },
     };
+
+    // Make the payment method my default payment method:
+    await stripe.customers.update(stripeCustomerId, {
+      invoice_settings: {
+        default_payment_method: paymentMethodId,
+      },
+    });
 
     // Update mongoDB database:
     const updatedStripePaymentMethod = await User.findOneAndUpdate(
