@@ -44,6 +44,16 @@ const orderSchema = new Schema({
     type: Date,
     default: Date.now,
   },
+
+  shippingAddress: {
+    type: Object,
+    required: true,
+  },
+
+  paymentMethod: {
+    type: Object,
+    required: true,
+  },
 });
 
 module.exports = mongoose.model("Order", orderSchema);
