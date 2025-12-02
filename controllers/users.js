@@ -156,6 +156,7 @@ exports.getUsers = (req, res, next) => {
     .catch((err) => {
       console.log(err);
     });
+  res.status(200).json({ users: "Hello" });
 };
 
 exports.getUser = (req, res, next) => {
