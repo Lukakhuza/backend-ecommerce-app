@@ -43,7 +43,7 @@ exports.getPaymentMethods = async (req, res, next) => {
   const { stripeCustomerId } = req.params;
 
   try {
-    const methods = stripe.paymentMethods.list({
+    const methods = await stripe.paymentMethods.list({
       customer: stripeCustomerId,
       type: "card",
     });
