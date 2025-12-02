@@ -26,14 +26,13 @@ exports.createProduct = (req, res, next) => {
     });
 };
 
-exports.getProducts = (req, res, next) => {
-  Product.find()
-    .then((products) => {
-      console.log(products);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+exports.getProducts = async (req, res, next) => {
+  try {
+    const products = Product.find();
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
 };
 
 exports.getProduct = (req, res, next) => {
