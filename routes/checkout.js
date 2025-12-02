@@ -6,9 +6,6 @@ const router = express.Router();
 
 router.put("/add-payment-method", checkoutController.addPaymentMethod);
 
-router.get(
-  "/payment-methods/:customerId",
-  checkoutController.getPaymentMethods
-);
+router.get("/payment-methods", checkoutController.getPaymentMethods);
 
 module.exports = router;
