@@ -40,5 +40,14 @@ exports.addPaymentMethod = async (req, res, next) => {
 };
 
 exports.getPaymentMethods = async (req, res, next) => {
-  console.log("Test 004", req.params);
+  const { stripeCustomerId } = req.params;
+
+  try {
+    const methods = stripe.paymentMethods.list({
+      customer: stripeCustomerId,
+      type: "card",
+    });
+
+    console.log("Methods: ", methods);
+  } catch (error) {}
 };
