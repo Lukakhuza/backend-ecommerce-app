@@ -38,3 +38,7 @@ exports.addPaymentMethod = async (req, res, next) => {
     res.status(400).send({ error: error.message });
   }
 };
+
+exports.getPaymentMethods = async (req, res, next) => {
+  console.log("Test 004", req.params);
+};
