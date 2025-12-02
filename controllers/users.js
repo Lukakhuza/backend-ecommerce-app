@@ -177,7 +177,7 @@ exports.getUser = (req, res, next) => {
 exports.getUserByEmail = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
-     const result = JSON.stringify({
+    const result = JSON.stringify({
       id: user._id,
       firstName: user.firstName,
       lastName: user.lastName,
@@ -188,20 +188,13 @@ exports.getUserByEmail = async (req, res, next) => {
       shopFor: user.shopFor,
       favorites: user.favorites,
       cart: user.cart,
-      stripeCustomerId: user.stripeCustomerId})
-      const userData = JSON.parse(result);
+      stripeCustomerId: user.stripeCustomerId,
+    });
+    const userData = JSON.parse(result);
     res.status(200).json({ user: userData });
   } catch (error) {
     res.status(400).send({ error: error.message });
   }
-
-  console.log(req.body.email);
-  User.findOne().then((user) => {
-   
-    });
-
-    
-  });
 };
 
 exports.updateUser = (req, res, next) => {
