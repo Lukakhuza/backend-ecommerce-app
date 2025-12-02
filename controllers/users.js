@@ -148,15 +148,13 @@ exports.authenticate = (req, res, next) => {
   res.status(200).json({ token: token, decodedToken: decodedToken });
 };
 
-exports.getUsers = (req, res, next) => {
-  User.find()
-    .then((users) => {
-      console.log(users);
-    })
-    .catch((err) => {
-      console.log(err);
-    });
-  res.status(200).json({ users: "Hello" });
+exports.getUsers = async (req, res, next) => {
+  try {
+    const users = await User.find();
+    res.status(200).json({ users: users });
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
 };
 
 exports.getUser = (req, res, next) => {
