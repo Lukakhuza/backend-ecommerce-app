@@ -48,6 +48,8 @@ exports.getPaymentMethods = async (req, res, next) => {
       type: "card",
     });
 
-    console.log("Methods: ", methods);
-  } catch (error) {}
+    res.status(200).json(methods);
+  } catch (error) {
+    res.status(400).send({ error: error.message });
+  }
 };
