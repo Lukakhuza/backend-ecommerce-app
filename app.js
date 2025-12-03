@@ -85,11 +85,9 @@ app.use("/auth", authRoutes);
 app.use("/checkout", checkoutRoutes);
 // const server = http.createServer(app);
 
-mongoose
-  .connect(MONGODB_URI)
-  .then((result) => {
-    app.listen(process.env.PORT || 3000);
-  })
-  .catch((err) => {
-    console.log(err);
-  });
+try {
+  await mongoose.connect(MONGODB_URI);
+  app.listen(process.env.PORT || 3000);
+} catch (error) {
+  console.log(error);
+}
