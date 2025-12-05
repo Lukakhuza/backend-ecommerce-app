@@ -94,6 +94,7 @@ exports.loginUser = async (req, res, next) => {
   const email = req.body.email.toLowerCase();
   const password = req.body.password;
 
+  console.log(email, password);
   try {
     const user = await User.findOne({ email: email });
     if (!user) {
@@ -112,6 +113,8 @@ exports.loginUser = async (req, res, next) => {
       "testsec",
       { expiresIn: "1h" }
     );
+
+    console.log(token);
     res.status(200).json({ token: token, userId: user._id.toString() });
   } catch (err) {
     console.log(err);
